@@ -17,17 +17,31 @@ var Counter = React.createClass({
       });
     },
 
+    componentWillMount: function() {
+        console.log('przed renderowaniem...');
+    },
+
+    componentDidMount: function() {
+        console.log('po renderowaniu...');
+    },
+
     render: function() {
-        return React.createElement('div', {onClick: this.increment},
+        console.log('renderowanie...');
+        return React.createElement('div', {},
+            React.createElement('button', {onClick: this.decrement}, "Odejmij"),
             React.createElement('span', {}, 'Licznik ' + this.state.counter),
-            React.createElement('button', {type: 'submit'}, "Dodaj")
-        );
-        return React.createElement('div', {onClick: this.decrement},
-            React.createElement('span', {}, 'Licznik ' + this.state.counter),
-            React.createElement('button', {type: 'submit'}, "Odejmij")
+            React.createElement('button', {onClick: this.increment}, "Dodaj")            
         );
     }
 });
 
-var element = React.createElement(Counter);
+var element = React.createElement('div', {},
+    React.createElement(Counter),
+    React.createElement(Counter),
+    React.createElement(Counter),
+    React.createElement(Counter),
+    React.createElement(Counter),
+    React.createElement(Counter),
+);
+
 ReactDOM.render(element, document.getElementById('app'));
